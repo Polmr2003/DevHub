@@ -1,5 +1,5 @@
 <?php
-class PetView
+class HomeView
 {
 	/**
 	 * Display HTML files with include() (optional parameters by assigning them to NULL)
@@ -11,7 +11,7 @@ class PetView
 	public function display ($template = NULL, $content = NULL)
 	{
 		// MENU ZONE (TOP: NAVBAR)
-		// include("view/menu/PetMenu.html"); ----> Las opciones relacionadas con Pet ya están incluidas en MainMenu.html
+		// include("view/menu/OwnerMenu.html"); ----> Las opciones relacionadas con Owner ya están incluidas en MainMenu.html
 
 		// MIDDLE ZONE (CONTENT)
 		if ($template != NULL) include($template);

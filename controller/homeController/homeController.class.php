@@ -1,22 +1,40 @@
 <?php
 
-require_once "controller/ControllerInterface.php"; // This class is a Controller, so it implements the Controller Interface.
+/**
+ * @homeController.class Fichero con la configuracion de nuestro controlador de la home
+ * @author Pol Moreno Romero
+*/
 
-require_once "view/HistoryView.class.php"; // The View is needed to display information to the user.
+/*
+|--------------------------------------------------------------------------
+| Importaciones para nuestro controlador
+|--------------------------------------------------------------------------
+|
+| Con tal que funcione nuestro contolador necesitaremos importar las classes
+| necesarias para que este funcione
+|
+*/
 
-//require_once "model/history/persist/OwnerDAO.class.php"; // This controller needs to be able to access the Owners in the database.
-require_once "model/history/persist/HistoryDAO.class.php"; // This controller needs to be able to access the Owners in the database.
-require_once "model/pet/persist/PetDAO.class.php";  // This controller needs to be able to access the Pets in the database (action search_pet_by_owner).
-require_once "model/history/History.class.php"; // This controller needs to be able to instantiate/getParam/setParam of Owners.
-require_once "model/history/History.class.php"; // This controller needs to be able to instantiate/getParam/setParam of Owners.
+// Importacion de la interficie con los metodos de las classes controllers
+require_once "controller/ControllerInterface.php";
 
-require_once "util/History/HistoryMessage.class.php"; // This controller will display info/error messages to the user.
-require_once "util/History/HistoryFormValidation.class.php"; // This controller needs to be able to validate user input data for inserting/updating Owners in the database.
+// The View is needed to display information to the user.
+require_once "view/HomeView.class.php";
+
+// This controller needs to be able to access the Owners in the database.
+require_once "model/history/persist/HistoryDAO.class.php";
+
+// This controller will display info/error messages to the user.
+require_once "util/History/HistoryMessage.class.php";
+
+// This controller needs to be able to validate user input data for inserting/updating Owners in the database.
+require_once "util/History/HistoryFormValidation.class.php";
 
 /**
  * Class that controls the user's requests sent to the owners-related section of the website.
  */
-class HistoryController  {
+class HomeController
+{
     private $view;
     private $model;
 
@@ -25,7 +43,7 @@ class HistoryController  {
      */
     public function __construct()
     {
-        $this->view = new HistoryView();
+        $this->view = new HomeView();
         $this->model = new HistoryDAO();
     }
 
@@ -46,8 +64,8 @@ class HistoryController  {
                 // $_GET requests:
             case "list_all":
                 $this->listAll();
-            break;
-            // DEFAULT (no request):
+                break;
+                // DEFAULT (no request):
             default:
                 // display default view for Owner's section of the website:
                 $this->view->display();
@@ -58,18 +76,13 @@ class HistoryController  {
     /**
      * Display all owners in a table, using the view. The owners were retrieved using the model.
      */
-    public function listAll()
+    public function home()
     {
         $history = $this->model->listAll(); // gather data from DAO
 
         if (!empty($history)) $_SESSION["info"][]  = HistoryMessage::SELECT_SUCCESS;
         else                 $_SESSION["error"][] = HistoryMessage::SELECT_ERROR;
 
-       $this->view->display("view/form/HistoryForm/HistoryList.php", $history); // display data
+        $this->view->display("view/form/HistoryForm/HistoryList.php", $history); // display data
     }
-
-    
-    
-   
 }
-
