@@ -43,12 +43,6 @@ require_once "controller/MainController.class.php"; // INDEX NEEDS MAIN CONTROLL
             <a href="https://www.proven.cat"><img src="<?= PATH_IMG ?>vet.png" alt="vet.png"></a>
             <h1>Clínica Veterinaria</h1> <!-- HEADER: PICTURE AND TITLE -->
         </header>
-        <?php
-        // if (isset($_SESSION["username"])) echo "Logged in as {$_SESSION['username']}";
-        // else echo "Currently not logged in. (PARA HACER PRUEBAS: username=admin, password=admin)";
-        $controlMain = new MainController();
-        $controlMain->processRequest(); // CALL TO MAIN CONTROLLER PROCESS REQUEST METHOD
-        ?>
     </div>
 </body>
 
