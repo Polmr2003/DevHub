@@ -40,7 +40,6 @@ require_once "controller/MainController.class.php"; // INDEX NEEDS MAIN CONTROLL
 <body>
     <div class="container">
         <header>
-            <a href="https://www.proven.cat"><img src="<?= PATH_IMG ?>vet.png" alt="vet.png"></a>
             <h1>Clínica Veterinaria</h1> <!-- HEADER: PICTURE AND TITLE -->
         </header>
     </div>
